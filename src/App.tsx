@@ -4,6 +4,7 @@ import "@fontsource/ibm-plex-mono/400.css";
 import { ArrowUpRight, Boxes, Cpu, Github, MemoryStick, RadioTower, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { BenchmarkPanel } from "./components/BenchmarkPanel";
+import { ArenaMatrix } from "./components/ArenaMatrix";
 import { GraphStage } from "./components/GraphStage";
 import { KernelInspector } from "./components/KernelInspector";
 import { MemoryMap } from "./components/MemoryMap";
@@ -19,6 +20,7 @@ const formatBytes = (bytes: number) => bytes >= 1024 * 1024
   : `${(bytes / 1024).toFixed(1)} KB`;
 
 export default function App() {
+  const [arenaMode] = useState(() => new URLSearchParams(window.location.search).get("arena") === "1");
   const [presetId, setPresetId] = useState("standard");
   const [fusion, setFusion] = useState(true);
   const [memoryReuse, setMemoryReuse] = useState(true);
@@ -87,6 +89,7 @@ export default function App() {
       <header className="site-header">
         <a className="brand" href="#top" aria-label="TensorForge home"><span className="brand-mark"><i /><i /><i /></span><strong>TensorForge</strong><small>WEBGPU LAB</small></a>
         <nav aria-label="Primary navigation">
+          {arenaMode && <a href="#kernel-arena">Arena</a>}
           <a href="#compiler-workbench">Workbench</a>
           <a href="#generated-code">WGSL</a>
           <a href="#architecture">Architecture</a>
@@ -120,6 +123,8 @@ export default function App() {
           <div><MemoryStick size={18} /><span>Transient reuse</span><strong>−{Math.max(0, memorySaving).toFixed(0)}%</strong></div>
           <div><Sparkles size={18} /><span>Target</span><strong>WGSL / f32</strong></div>
         </section>
+
+        {arenaMode && <ArenaMatrix />}
 
         <section className="workbench" id="compiler-workbench" aria-labelledby="workbench-title">
           <header className="section-heading">

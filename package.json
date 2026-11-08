@@ -16,14 +16,14 @@
     "@fontsource-variable/syne": "^5.2.6",
     "@fontsource/ibm-plex-mono": "^5.2.6",
     "lucide-react": "^0.468.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react": "^19.2.9",
+    "react-dom": "^19.2.9"
   },
   "devDependencies": {
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.4.1",
-    "@webgpu/types": "^0.1.72",
+    "@webgpu/types": "^0.1.74",
     "typescript": "^5.9.2",
     "vite": "^7.3.7",
     "vitest": "^3.2.4"
